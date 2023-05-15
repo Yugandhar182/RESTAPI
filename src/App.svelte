@@ -1,29 +1,31 @@
+<h1>hello</h1>
 <script>
 	import Grid from "gridjs-svelte";
-	
+  
 	const data = [
-	  { name: "Gopi", email: "gopi123@gmail.com"},
-	  { name: "Ravi", email: "Ravi@gmail.com"}, 
-	  { name: "Surya", email: "Surya34@gmail.com"}, 
-	  { name: "Charan", email: "Charan98@gmail.com"}, 
-	  { name: "Chandu", email: "Chandu@gmail.com"}, 
-	  { name: "Dilli", email: "Dilli34@gmail.com"}, 
-	  { name: "Yeswanth", email: "Yesw76@gmail.com"}, 
-	  { name: "Ajay", email: "ajay@gmail.com"}, 
-	  { name: "Koti", email: "koti098@gmail.com"}, 
-	  { name: "Rajesh", email: "raju654@gmail.com"}, 
+	  { Name: "Sachin", Runs: 320000, Age: 40, Centuries: 100,  Wickets: 168 },
+	  { Name: "Kohli", Runs: 25000, Age: 34, Centuries: 75, Wickets: 78 },
+	  { Name: "Root", Runs: 19000, Age: 33, Centuries: 45, Wickets: 98 },
+	  { Name: "Smith", Runs: 17000, Age: 32, Centuries: 41, Wickets: 119 },
+	  { Name: "Pointing", Runs: 22000, Age: 37, Centuries: 65, Wickets: 68 },
+	  { Name: "Kane", Runs: 18000, Age: 37, Centuries: 35, Wickets: 61 },
+	  { Name: "Anderson", Runs: 2000, Age: 39, Centuries: 0, Wickets: 678 },
+	  { Name: "Warne", Runs: 1810, Age: 39, Centuries: 0, Wickets: 778 },
 	];
-	const columns = ["Name", "email"];
+  
+	const columns = ["Name", "Runs", "Age", "Centuries", "Wickets"];
 	
   
-
   </script>
-  <Grid data={data} 
-   sort 
-   search 
-   pagination={{ enabled: true, limit:5 }}  />
 
-  <style global>
-  @import "https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css";
-  </style>
+  <Grid data={data} 
+  sort 
+  search 
+  pagination={{ enabled: true, limit: 3 }} columns={columns} />
   
+ 
+ 
+  
+  <style global>
+	@import "https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css";
+  </style>
