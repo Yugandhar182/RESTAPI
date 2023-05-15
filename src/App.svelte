@@ -1,31 +1,31 @@
-<h1>hello</h1>
 <script>
 	import Grid from "gridjs-svelte";
-  
-	const data = [
-	  { Name: "Sachin", Runs: 320000, Age: 40, Centuries: 100,  Wickets: 168 },
-	  { Name: "Kohli", Runs: 25000, Age: 34, Centuries: 75, Wickets: 78 },
-	  { Name: "Root", Runs: 19000, Age: 33, Centuries: 45, Wickets: 98 },
-	  { Name: "Smith", Runs: 17000, Age: 32, Centuries: 41, Wickets: 119 },
-	  { Name: "Pointing", Runs: 22000, Age: 37, Centuries: 65, Wickets: 68 },
-	  { Name: "Kane", Runs: 18000, Age: 37, Centuries: 35, Wickets: 61 },
-	  { Name: "Anderson", Runs: 2000, Age: 39, Centuries: 0, Wickets: 678 },
-	  { Name: "Warne", Runs: 1810, Age: 39, Centuries: 0, Wickets: 778 },
+	
+	
+		const data = [
+	  { name: "Sachin", runs: 320000, age: 40, centuries: 100,  wickets: 168 },
+	  { name: "Kohli", runs: 25000, age: 34, centuries: 75, wickets: 78 },
+	  { name: "Root", runs: 19000, age: 33, centuries: 45, wickets: 98 },
+	  { name: "Smith", runs: 17000, age: 32, centuries: 41, wickets: 119 },
+	  { name: "Pointing", runs: 22000, age: 37, centuries: 65, wickets: 68 },
+	  { name: "Kane", runs: 18000, age: 37, centuries: 35, wickets: 61 },
+	  { name: "Anderson", runs: 2000, age: 39, centuries: 1, wickets: 678 },
+	  { name: "Warne", runs: 1800, age:39, centuries: 2, wickets: 778 },
 	];
   
-	const columns = ["Name", "Runs", "Age", "Centuries", "Wickets"];
+	  
+
+	const columns = ["name", "runs" , "age" , "centuries" , "Wickets"];
 	
   
-  </script>
 
+  </script>
   <Grid data={data} 
-  sort 
-  search 
-  pagination={{ enabled: true, limit: 3 }} columns={columns} />
-  
- 
- 
-  
+   sort 
+   search 
+   pagination={{ enabled: true, limit:5 }}  />
+
   <style global>
-	@import "https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css";
+  @import "https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css";
   </style>
+  
