@@ -1,4 +1,4 @@
-<h1>hello</h1>
+
 <script>
 	import Grid from "gridjs-svelte";
   
