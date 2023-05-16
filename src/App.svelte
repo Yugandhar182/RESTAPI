@@ -1,47 +1,80 @@
 <script>
-	import { onMount } from 'svelte';
-	import { createGrid } from 'gridjs';
-	import axios from 'axios';
+    import { onMount } from "svelte";
   
-	let data = [];
+    const endpoint = "https://example.com/api/data";
+    let data = [];
   
-	onMount(async function() {
-	  try {
-		const response = await axios.get('https://api.recruitly.io/api/job?apiKey=TEST64518616D4CF145D4E20BD47169EA7229BA3');
-		data = response.data.data;
-	  } catch (error) {
-		console.error('Failed to fetch data:', error);
-	  }
-	});
+    onMount(async function() {
+      await fetchData();
+    });
   
-	function createDataGrid() {
-	  if (data.length > 0) {
-		const grid = createGrid({
-		  data,
-		  columns: Object.keys(data[0]).map((key) => ({ name: key, title: key })),
-		});
-  
-		grid.render(document.getElementById('data-grid'));
-	  }
-	}
+    async function fetchData() {
+      try {
+        const response = await fetch(endpoint);
+        data = await response.json();
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    }
   </script>
   
   <main>
-	<h1>Data Grid</h1>
-	<button on:click={createDataGrid}>Load Data</button>
-	<div id="data-grid" />
+    <h1>Click below</h1>
+    <p>
+      <a href="https://example.com/api/data"><button on:click={fetchData} style="background-color: blue; color: white;">Fetch Data</button>
+      </a>
+    </p>
+  
+    
+  
+    {#if data.length > 0}
+      <table>
+        <thead>
+          <tr>
+            {#each Object.keys(data[0]) as key}
+              <th>{key}</th>
+            {/each}
+          </tr>
+        </thead>
+        <tbody>
+          {#each data as item}
+            <tr>
+              {#each Object.values(item) as value}
+                <td>{value}</td>
+              {/each}
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    {/if}
   </main>
   
   <style>
-	main {
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	  padding: 20px;
-	}
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
   
-	h1 {
-	  margin-bottom: 20px;
-	}
+    h1 {
+      margin-bottom: 20px;
+    }
+  
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+  
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+  
+    th {
+      background-color: #f2f2f2;
+    }
   </style>
   
