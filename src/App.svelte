@@ -1,16 +1,22 @@
 <script>
   import { onMount } from "svelte";
+  import Grid from "gridjs-svelte";
+
   let jsonData = [];
+  let sort = [];
+  let search = [];
+  let pagination = [];
 
   onMount(async () => {
     const response = await fetch("https://api.recruitly.io/api/job?apiKey=TEST64518616D4CF145D4E20BD47169EA7229BA3");
     const responseData = await response.json();
     jsonData = responseData.data;
   });
+
+  const columns = ["id", "reference", "status", "industry"];
 </script>
 
 <main>
-  <h1>Job applications</h1>
   {#if jsonData.length > 0}
     <div class="grid-container">
       {#each jsonData as item}
@@ -32,10 +38,9 @@
         </div>
       {/each}
     </div>
+    <Grid columns={columns} sort search pagination={{ enabled: true, limit: 5 }} />
   {/if}
 </main>
-
-
 
 <style>
   main {
