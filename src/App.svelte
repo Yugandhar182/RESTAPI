@@ -1,51 +1,28 @@
 <script>
     import { onMount } from "svelte";
+    let jsonData = [];
   
-    const endpoint = "https://example.com/api/data";
-    let data = [];
-  
-    onMount(async function() {
-      await fetchData();
+    onMount(async () => {
+      const response = await fetch("https://api.recruitly.io/api/job?apiKey=TEST64518616D4CF145D4E20BD47169EA7229BA3");
+      const responseData = await response.json();
+      jsonData = responseData.data;
     });
-  
-    async function fetchData() {
-      try {
-        const response = await fetch(endpoint);
-        data = await response.json();
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
-    }
   </script>
   
   <main>
-    <h1>Click below</h1>
-    <p>
-      <a href="https://example.com/api/data"><button on:click={fetchData} style="background-color: blue; color: white;">Fetch Data</button>
-      </a>
-    </p>
+   
   
-    
-  
-    {#if data.length > 0}
-      <table>
-        <thead>
-          <tr>
-            {#each Object.keys(data[0]) as key}
-              <th>{key}</th>
-            {/each}
-          </tr>
-        </thead>
-        <tbody>
-          {#each data as item}
-            <tr>
-              {#each Object.values(item) as value}
-                <td>{value}</td>
-              {/each}
-            </tr>
+    {#if jsonData.length > 0}
+      <div class="grid-container">
+        {#each jsonData as item}
+          {#each Object.entries(item) as [key, value]}
+            <div class="grid-item">
+              <span>{key}: </span>
+              <span>{typeof value === 'object' ? JSON.stringify(value) : value}</span>
+            </div>
           {/each}
-        </tbody>
-      </table>
+        {/each}
+      </div>
     {/if}
   </main>
   
@@ -57,24 +34,19 @@
       padding: 20px;
     }
   
-    h1 {
-      margin-bottom: 20px;
-    }
+   
   
-    table {
-      border-collapse: collapse;
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 8px;
       width: 100%;
     }
   
-    th,
-    td {
+    .grid-item {
       border: 1px solid #ddd;
       padding: 8px;
       text-align: left;
-    }
-  
-    th {
-      background-color: #f2f2f2;
     }
   </style>
   
