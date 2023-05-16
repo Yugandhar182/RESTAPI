@@ -45,7 +45,7 @@
   
     .grid-item {
       border: 1px solid #ddd;
-      padding: 8px;
+      padding: 5px;
       text-align: left;
     }
   </style>
