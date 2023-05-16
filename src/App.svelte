@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import Grid from "gridjs-svelte";
+  
 
   let jsonData = [];
  
@@ -35,7 +35,7 @@
         </div>
       {/each}
     </div>
-    <Grid jsonData={jsonData} />
+   
   {/if}
 </main>
 
