@@ -16,22 +16,7 @@
     const responseData = await response.json();
     jsonData = responseData.data;
   }
-</script>
 
-<main class="mt-4">
-  {#if tableVisible}
-    <Grid
-      on:gridjs:ready={gridReady}
-      data={jsonData}
-      columns={Object.keys(jsonData[0])} />
-  {/if}
-</main>
-
-<style global>
-  @import "https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css";
-</style>
-
-<script>
   let grid;
 
   function gridReady() {
@@ -49,3 +34,16 @@
     grid.forceRender();
   }
 </script>
+
+<main class="mt-4">
+  {#if tableVisible}
+    <Grid
+      on:gridjs:ready={gridReady}
+      data={jsonData}
+      columns={Object.keys(jsonData[0])} />
+  {/if}
+</main>
+
+<style global>
+  @import "https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css";
+</style>
