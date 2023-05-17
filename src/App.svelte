@@ -30,5 +30,5 @@
 
 <style global>
   @import "https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css";
-  @import "https://cdn.jsdelivr.net/npm/bootstrap@5.7.2/dist/css/bootstrap.min.css";
+ 
 </style>
