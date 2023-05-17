@@ -23,14 +23,8 @@
       search
       sort
       pagination={{ enabled: true, limit: 38 }}
-      data={jsonData.map(item => ({
-        id: item.id,
-        title: item.title,
-        reference: item.reference,
-        status: item.status,
-        industry: item.industry,
-        customData: item.customData  // Add the additional property here
-      }))} />
+      columns={Object.keys(jsonData[0])} // Generate columns dynamically based on the first data item
+      data={jsonData} />
   {/if}
 </main>
 
