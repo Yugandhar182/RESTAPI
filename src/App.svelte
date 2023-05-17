@@ -17,7 +17,7 @@
   }
 </script>
 
-<main class="container mt-4">
+<main class="mt-4">
   {#if tableVisible}
     <Grid
       search
@@ -30,5 +30,4 @@
 
 <style global>
   @import "https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css";
- 
 </style>
