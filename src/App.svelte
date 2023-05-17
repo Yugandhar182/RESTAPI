@@ -6,26 +6,16 @@
   let tableVisible = false;
 
   onMount(async () => {
-    const response = await fetch("https://api.recruitly.io/api/job?apiKey=TEST64518616D4CF145D4E20BD47169EA7229BA3");
-    const responseData = await response.json();
-    jsonData = responseData.data;
+    await fetchData();
+    tableVisible = true;
   });
-
-  function openTable() {
-    if (!tableVisible) {
-      fetchData();
-    }
-  }
 
   async function fetchData() {
     const response = await fetch("https://api.recruitly.io/api/job?apiKey=TEST64518616D4CF145D4E20BD47169EA7229BA3");
     const responseData = await response.json();
     jsonData = responseData.data;
-    tableVisible = true;
   }
 </script>
-
-<button on:click={openTable}>Display Table</button>
 
 <main>
   {#if tableVisible}
@@ -34,9 +24,11 @@
       sort
       pagination={{ enabled: true, limit: 38 }}
       data={jsonData.map(item => ({
+        id: item.id,
         title: item.title,
         reference: item.reference,
-        status: item.status
+        status: item.status,
+        industry: item.industry
       }))} />
   {/if}
 </main>
