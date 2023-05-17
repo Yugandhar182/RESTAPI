@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import Grid from "gridjs-svelte";
-  import { createGrid, search, sort, pagination } from "gridjs";
 
   let jsonData = [];
   let tableVisible = false;
@@ -16,34 +15,30 @@
     const responseData = await response.json();
     jsonData = responseData.data;
   }
-
-  let grid;
-
-  function gridReady() {
-    grid = createGrid();
-    grid.search({
-      enabled: true
-    });
-    grid.sort({
-      enabled: true
-    });
-    grid.pagination({
-      enabled: true,
-      limit: 38
-    });
-    grid.forceRender();
-  }
 </script>
 
-<main class="mt-4">
+<main class="container mt-4">
   {#if tableVisible}
     <Grid
-      on:gridjs:ready={gridReady}
-      data={jsonData}
-      columns={Object.keys(jsonData[0])} />
+      search
+      sort
+      pagination={{ enabled: true, limit: 38 }}
+      data={jsonData.map(item => ({
+        id: item.id,
+        title: item.title,
+        reference: item.reference,
+        status: item.status,
+        industry: item.industry,
+        
+      }))} />
   {/if}
 </main>
 
-<style global>
+<style>
   @import "https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css";
+
+
+  .gridjs-th {
+    background-color: yellow;
+  }
 </style>
